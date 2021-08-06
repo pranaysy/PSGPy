@@ -38,7 +38,7 @@ sns.set(
 )
 
 # %% Plot hypnogram
-def plot_hypnogram(resampled_hypno, cycles=None, label=""):
+def plot_hypnogram(resampled_hypno, cycles=None, label="", fig=None, ax=None):
     """
     Plot an aesthetically pleasing hypnogram with optional cycle markers.
 
@@ -60,8 +60,10 @@ def plot_hypnogram(resampled_hypno, cycles=None, label=""):
         Axis on figure used by hypnogram.
 
     """
-    # Initialize figure and axes
-    fig, ax = plt.subplots(1, 1, figsize=(16, 4.5), tight_layout=True, sharex=True)
+    if (fig is None) and (ax is None):
+
+        # Initialize figure and axes
+        fig, ax = plt.subplots(1, 1, figsize=(16, 4.5), tight_layout=True, sharex=True)
 
     # Ordering of stages and corresponding colors
     stages = ["N3", "N2", "N1", "W", "R"]
