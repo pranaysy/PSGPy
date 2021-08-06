@@ -39,7 +39,6 @@ hypno_resampled = PSGPy.resample_hypnogram(hypno)
 # Plot hypnogram
 fig, ax = PSGPy.plot_hypnogram(hypno_resampled)
 ```
-`PSGPy.plot_hypnogram` takes an additional argument `label` for adding identifiers.
 
 ![Example Hypnogram](Hypnogram.jpg)
 
@@ -47,12 +46,14 @@ fig, ax = PSGPy.plot_hypnogram(hypno_resampled)
 ```python
 PSGPy.save_hypnogram_plot(fig, label="Example", folder=Path("/output/plots/"))
 ```
+Output formats can be selected as additional optional arguments, by default `.tiff` with
+LZMA compression is preferred, alternatives are `.jpg` and `.svg`. See docstrings for more.
 
 ### Detect sleep cycles and visualize
 
 **Detect cycles using deterministic criteria**
 ```python
-cycles = PSGPy.detect_cycles(df, min_length=10, min_separation=10)
+cycles = PSGPy.detect_cycles(hypno, min_length=10, min_separation=10)
 ```
 The two parameters indirectly control onset and offset of each cycle.
 - `min_length` indicates the minimum duration of consecutive NREM runs for cycle onset
