@@ -7,6 +7,8 @@ Core functionality is implemented using:
 - `Pandas`
 - `Matplotlib`
 - `Seaborn`
+
+
 For reading EDF files and scored hypnograms,
 - `MNE` must be correctly installed
 
@@ -14,14 +16,14 @@ For reading EDF files and scored hypnograms,
 ### Read and visualize a Hypnogram
 
 
-Step 1. Import call
+**Step 1. Import call**
 ```python
 import PSGPy
 from pathlib import Path
 ```
 
 
-Step 2. Read hypnogram
+**Step 2. Read hypnogram**
 ```python
 file = Path("/path/to/hypnogram.edf")
 hypno = PSGPy.load_hypnogram(file, wake_threshold=2)
@@ -29,7 +31,7 @@ hypno = PSGPy.load_hypnogram(file, wake_threshold=2)
 The parameter `wake_threshold` indicates cutoff in minutes for short and long awakenings.
 
 
-Step 3. Plot hypnogram
+**Step 3. Plot hypnogram**
 ```python
 # Resample hypnogram to epoch units of time
 hypno_resampled = PSGPy.resample_hypnogram(hypno)
@@ -39,16 +41,16 @@ fig, ax = PSGPy.plot_hypnogram(hypno_resampled)
 ```
 `PSGPy.plot_hypnogram` takes an additional argument `label` for adding identifiers.
 
-![Example Hypnogram](Hypnogram.tiff)
+![Example Hypnogram](Hypnogram.jpg)
 
-Step 4. Save hypnogram
+**Step 4. Save hypnogram**
 ```python
 PSGPy.save_hypnogram_plot(fig, label="Example", folder=Path("/output/plots/"))
 ```
 
 ### Detect sleep cycles and visualize
 
-Detect cycles using deterministic criteria
+**Detect cycles using deterministic criteria**
 ```python
 cycles = PSGPy.detect_cycles(df, min_length=10, min_separation=10)
 ```
@@ -63,7 +65,7 @@ Offset is decided by three fail-over critieria:
 3. Onset of first long awakening after an NREM run
 
 
-Visualize cycles
+**Visualize cycles**
 ```python
 # Update hypnogram with cycle information
 hypno = PSGPy.update_hypnogram_cycles(hypno, cycles)
@@ -74,4 +76,4 @@ hypno_resampled = PSGPy.resample_hypnogram(hypno)
 # Plot hypnogram with cycles marked
 fig, ax = PSGPy.plot_hypnogram(hypno_resampled, cycles)
 ```
-![Example Hypnogram with Cycles](Hypnogram_with_Cycles.tiff)
+![Example Hypnogram with Cycles](Hypnogram_with_Cycles.jpg)
