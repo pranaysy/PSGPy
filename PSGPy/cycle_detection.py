@@ -193,7 +193,7 @@ def _detect_cycle_offsets(hypno, runs):
     return cycles
 
 
-def detect_cycles(hypno, min_NREM_run_length=10, min_NREM_run_separation=10):
+def detect_cycles(hypno, min_length=10, min_separation=10):
     """
     Detect onsets and offsets for cycles based on thresholds & deterministic criteria.
 
@@ -207,10 +207,10 @@ def detect_cycles(hypno, min_NREM_run_length=10, min_NREM_run_separation=10):
     ----------
     hypno : pd.DataFrame
         Hypnogram dataframe obtained through load_hypno().
-    min_NREM_run_length : int or float, positive non-zero, optional
+    min_length : int or float, positive non-zero, optional
         Minimum duration in minutes for thresholding lengths of NREM runs.
         The default is 10.
-    min_NREM_run_separation : int or float, positive non-zero, optional
+    min_separation : int or float, positive non-zero, optional
         Minimum duration in minutes for thresholding gaps between consecutive NREM runs.
         The default is 10.
 
@@ -221,10 +221,10 @@ def detect_cycles(hypno, min_NREM_run_length=10, min_NREM_run_separation=10):
 
     """
     # Detect long-enough consecutive NREM runs
-    runs = _detect_NREM_runs(hypno, min_NREM_run_length)
+    runs = _detect_NREM_runs(hypno, min_length)
 
     # Detect NREM cycles based on long-enough gaps between successive NREM runs
-    runs = _segregate_NREM_runs(runs, min_NREM_run_separation)
+    runs = _segregate_NREM_runs(runs, min_separation)
 
     # Detect cycles offsets
     cycles = _detect_cycle_offsets(hypno, runs)
