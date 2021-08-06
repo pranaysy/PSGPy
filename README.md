@@ -13,8 +13,15 @@ For reading EDF files and scored hypnograms,
 - `MNE` must be correctly installed
 
 ## Demo
-### Read and visualize a Hypnogram
+**Step 0. Clone repository**
+```bash
+git clone git@github.com:pranaysy/PSGPy.git
+cd PSGPy
+```
+After entering the `PSGPy` directory, launch an interpreter inside an
+environment with the required packages installed.
 
+### Read and visualize a Hypnogram
 
 **Step 1. Import call**
 ```python
