@@ -55,12 +55,12 @@ LZMA compression is preferred, alternatives are `.jpg` and `.svg`. See docstring
 ```python
 cycles = PSGPy.detect_cycles(hypno, min_length=10, min_separation=10)
 ```
-The two parameters indirectly control onset and offset of each cycle.
+Two parameters indirectly control onset and offset of each cycle.
 - `min_length` indicates the minimum duration of consecutive NREM runs for cycle onset
 - `min_separation` indicates the gap between two NREM runs to qualify as distinct cycles
 
 
-Offset is decided by three fail-over critieria:
+Offset is decided by three fail-over fixed critieria:
 1. Offset of last REM after an NREM run
 2. Offset of last N3 after an NREM run, if followed by a short awakening
 3. Onset of first long awakening after an NREM run
